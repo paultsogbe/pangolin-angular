@@ -1,0 +1,31 @@
+<mat-card>
+  <!-- <button mat-button (click)="logout()">logout</button> -->
+  {{ errorFromServer }}
+</mat-card>
+<mat-selection-list #pangolins>
+  <mat-list-option *ngFor="let bp of allPangolins" [value]="bp._id">
+    <!-- <p>{{ bp.title }} - {{ bp.role }}</p> -->
+    <a [routerLink]="['/admin/pangolins/', bp._id]"
+      >{{ bp.title }} - {{ bp.role }}</a
+    >
+    <!-- <p>{{ bp.role }}</p> -->
+  </mat-list-option>
+</mat-selection-list>
+<mat-card
+  >Pangolins selected: {{ pangolins.selectedOptions.selected.length }}</mat-card
+>
+
+<mat-divider></mat-divider>
+<mat-card>
+  <mat-card-actions>
+    <button
+      mat-button
+      (click)="deletePangolins(pangolins.selectedOptions.selected)"
+      *ngIf="pangolins.selectedOptions.selected.length > 0"
+    >
+      DELETE
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<app-pangolin-create></app-pangolin-create>
